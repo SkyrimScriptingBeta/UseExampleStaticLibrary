@@ -1,8 +1,4 @@
-add_rules("mode.debug", "mode.release")
-
 set_languages("c++23")
-
-add_repositories("SkyrimScripting https://github.com/SkyrimScripting/Packages.git")
 
 mods_folders = os.getenv("SKYRIM_MODS_FOLDERS")
 
@@ -14,9 +10,9 @@ end
 
 print("Skyrim versions to build for: " .. table.concat(skyrim_versions, ", "))
 
-for _, game_version in ipairs(skyrim_versions) do
-    add_requires("skyrim-commonlib-" .. game_version)
-end
+-- for _, game_version in ipairs(skyrim_versions) do
+--     add_requires("skyrim-commonlib-" .. game_version)
+-- end
 
 for _, game_version in ipairs(skyrim_versions) do
     target("SKSE Plugin - " .. game_version:upper())
@@ -32,4 +28,5 @@ for _, game_version in ipairs(skyrim_versions) do
             author = mod_info.author,
             email = mod_info.email
         })
+        add_packages("example_static_library")
 end
